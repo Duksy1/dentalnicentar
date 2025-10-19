@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crnojević Dental Studio - Vrhunski Stomatolog Zagreb</title>
-    <meta name="description" content="Crnojević Dental Studio u Zagrebu nudi vrhunske stomatološke usluge. Od hitnih popravaka do estetske stomatologije. Zakažite termin već danas.">
+    <title>Crnojević Dental Studio - Premium Stomatologija Zagreb</title>
+    <meta name="description" content="Crnojević Dental Studio u Zagrebu nudi vrhunske estetske i funkcionalne stomatološke usluge. Diskrecija, preciznost i sofisticiran pristup vašem osmijehu.">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -13,12 +13,14 @@
         /* OSNOVNI STILOVI I VARIJABLE                    */
         /* ============================================ */
         :root {
-            --primary-color: #007BFF; /* Plava - boja povjerenja i medicine */
-            --secondary-color: #28a745; /* Zelena - za hitne slučajeve ili uspjeh */
-            --dark-color: #333;
-            --light-color: #f4f4f4;
-            --text-color: #555;
-            --font-family: 'Arial', sans-serif; /* Koristite čitljiv font */
+            --primary-color: #34495e; /* Tamno siva/gotovo crna za primarne elemente */
+            --accent-color: #007BFF; /* Diskretna plava za naglasak i hover */
+            --background-light: #f9f9f9; /* Svijetlo siva za pozadine */
+            --text-dark: #2c3e50; /* Tamniji tekst */
+            --text-light: #ecf0f1; /* Svjetliji tekst */
+            --border-color: #e0e0e0; /* Fina siva za bordere */
+            --font-family-primary: 'Arial', sans-serif; /* Za opći tekst */
+            --font-family-secondary: 'Georgia', serif; /* Za naslove, dodaje premium dojam */
         }
 
         * {
@@ -28,13 +30,14 @@
         }
 
         body {
-            font-family: var(--font-family);
+            font-family: var(--font-family-primary);
             line-height: 1.6;
-            color: var(--text-color);
+            color: var(--text-dark);
+            background-color: #fff; /* Čisto bijela pozadina */
         }
 
         html {
-            scroll-behavior: smooth; /* Za glatko skrolanje kod klikanja na linkove */
+            scroll-behavior: smooth;
         }
 
         .container {
@@ -44,93 +47,115 @@
         }
 
         section {
-            padding: 60px 0;
+            padding: 80px 0; /* Više paddinga za premium dojam */
+            opacity: 0; /* Početna nevidljivost za animacije */
+            transform: translateY(20px); /* Početna pozicija za animacije */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        section.animate-on-scroll {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-title {
-            font-size: 2.5rem;
-            color: var(--dark-color);
+            font-family: var(--font-family-secondary);
+            font-size: 3rem;
+            color: var(--primary-color);
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            font-weight: normal;
         }
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.1rem;
-            margin-bottom: 40px;
+            font-size: 1.2rem;
+            margin-bottom: 60px; /* Više prostora */
+            color: var(--text-dark);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* ============================================ */
-        /* GUMBI (BUTTONS) - KLJUČNI ZA KONVERZIJU    */
+        /* GUMBI                                        */
         /* ============================================ */
         .btn {
             display: inline-block;
-            padding: 12px 24px;
-            font-size: 1rem;
+            padding: 14px 28px;
+            font-size: 1.05rem;
             font-weight: bold;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 50px; /* Zaobljeni gumbi */
             transition: all 0.3s ease;
             cursor: pointer;
             text-align: center;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .btn-primary {
             background-color: var(--primary-color);
             color: #fff;
-            border: none;
+            border: 2px solid var(--primary-color);
         }
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .btn-secondary {
-            background-color: var(--secondary-color);
-            color: #fff;
-            border: none;
-        }
-        .btn-secondary:hover {
-            background-color: #1e7e34;
-        }
-
-        .btn-primary-outline {
             background-color: transparent;
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
         }
-        .btn-primary-outline:hover {
+        .btn-secondary:hover {
             background-color: var(--primary-color);
             color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .btn-block {
             width: 100%;
+            border-radius: 8px; /* Standardni radius za forme */
         }
 
         /* ============================================ */
-        /* NAVIGACIJA                                   */
+        /* NAVIGACIJA (Lebdeći Header)                  */
         /* ============================================ */
         .navbar {
-            background: #fff;
-            border-bottom: 1px solid #eee;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
+            background: rgba(255, 255, 255, 0.95); /* Poluprozirna bijela */
+            border-bottom: none; /* Ukloni donji border */
+            padding: 0.8rem 0;
+            position: fixed; /* Fiksno pozicioniran */
+            top: 20px; /* Lebdi 20px od vrha */
+            left: 50%;
+            transform: translateX(-50%); /* Centriraj header */
             z-index: 1000;
-            width: 100%;
+            width: calc(100% - 40px); /* Malo uži od pune širine */
+            max-width: 1100px; /* Ograniči širinu kao container */
+            border-radius: 10px; /* Zaobljeni kutovi */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Diskretna sjena */
+            backdrop-filter: blur(5px); /* Blagi blur efekt iza headera */
         }
 
         .navbar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 30px; /* Više paddinga unutar headera */
         }
 
         .nav-logo {
-            font-size: 1.5rem;
+            font-family: var(--font-family-secondary);
+            font-size: 1.8rem;
             font-weight: bold;
-            color: var(--dark-color);
+            color: var(--primary-color);
             text-decoration: none;
+            letter-spacing: 0.5px;
         }
 
         .nav-menu {
@@ -140,28 +165,49 @@
         }
 
         .nav-item {
-            margin-left: 20px;
+            margin-left: 30px; /* Više razmaka */
         }
 
         .nav-link {
             text-decoration: none;
-            color: var(--text-color);
+            color: var(--text-dark);
             font-weight: 600;
             transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px; /* Za podcrte */
         }
         .nav-link:hover {
-            color: var(--primary-color);
+            color: var(--accent-color);
+        }
+        /* Podvučeni efekt na hover */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease-out;
+        }
+        .nav-link:hover::after {
+            width: 100%;
         }
 
         .nav-phone-desktop {
             display: block;
             font-weight: bold;
-            color: var(--primary-color);
+            color: var(--accent-color); /* Naglašena boja za telefon */
             text-decoration: none;
-            margin-left: 20px;
+            margin-left: 30px;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        .nav-phone-desktop:hover {
+            color: var(--primary-color);
         }
         .nav-phone-desktop i {
-            margin-right: 5px;
+            margin-right: 8px;
         }
 
         .hamburger {
@@ -171,10 +217,10 @@
 
         .bar {
             display: block;
-            width: 25px;
+            width: 28px;
             height: 3px;
-            margin: 5px auto;
-            background-color: var(--dark-color);
+            margin: 6px auto;
+            background-color: var(--primary-color);
             transition: all 0.3s ease-in-out;
         }
 
@@ -182,28 +228,39 @@
         /* HERO SEKCIJA                                 */
         /* ============================================ */
         .hero {
-            background-color: var(--light-color); /* Ili slika: background: url('...') */
-            padding: 80px 0;
-            text-align: left;
+            background-color: var(--background-light); /* Svijetla pozadina */
+            padding: 120px 0 100px; /* Više prostora, posebno zbog lebdećeg headera */
+            text-align: center; /* Centriran tekst */
+            display: flex;
+            align-items: center;
+            min-height: 600px; /* Minimalna visina za hero sekciju */
+            padding-top: 150px; /* Još više paddinga zbog fiksnog headera */
         }
 
         .hero-text h1 {
-            font-size: 3rem;
-            color: var(--dark-color);
-            line-height: 1.2;
-            margin-bottom: 20px;
-            max-width: 600px;
+            font-family: var(--font-family-secondary);
+            font-size: 4rem;
+            color: var(--primary-color);
+            line-height: 1.1;
+            margin-bottom: 25px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: normal;
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 550px;
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--text-dark);
         }
 
         .hero-cta .btn {
-            margin-right: 15px;
-            margin-bottom: 10px; /* Za mobilne uređaje */
+            margin: 0 15px;
+            margin-bottom: 15px; /* Za mobilne uređaje */
         }
 
         /* ============================================ */
@@ -215,103 +272,136 @@
 
         .usluge-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px; /* Više razmaka */
         }
 
         .usluga-card {
             background: #fff;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 35px;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03); /* Suptilna sjena */
         }
         .usluga-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transform: translateY(-7px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border-color: var(--accent-color); /* Naglašeni border na hover */
         }
         .usluga-card h3 {
-            color: var(--dark-color);
-            margin: 15px 0 10px;
+            font-family: var(--font-family-secondary);
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 20px 0 15px;
+            font-weight: normal;
         }
         .icon-large {
-            font-size: 2.5rem;
-            color: var(--primary-color);
+            font-size: 3rem;
+            color: var(--accent-color); /* Ikone u naglašenoj boji */
+        }
+        .usluga-card p {
+            font-size: 1.05rem;
         }
 
         /* ============================================ */
-        /* O NAMA SEKCIJA (POVJERENJE)                */
+        /* O NAMA SEKCIJA                               */
         /* ============================================ */
         .o-nama-section {
-            background-color: var(--light-color);
+            background-color: var(--background-light);
         }
         .o-nama-flex {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 60px; /* Veći razmak */
         }
         .o-nama-image {
             flex: 1;
         }
         .o-nama-image img {
             width: 100%;
-            max-width: 450px;
+            max-width: 500px;
             border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            filter: grayscale(80%); /* Smanji zasićenost za premium look */
+            transition: filter 0.5s ease;
+        }
+        .o-nama-image img:hover {
+            filter: grayscale(0%); /* Pokaži boju na hover */
         }
         .o-nama-text {
             flex: 1.2;
         }
-        .o-nama-text h2 {
+        .o-nama-text .section-title {
             text-align: left;
         }
+        .o-nama-text h3 {
+            font-family: var(--font-family-secondary);
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
         .o-nama-text p {
-            margin-bottom: 15px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
         }
 
         /* ============================================ */
-        /* RECENZIJE SEKCIJA (SOCIJALNI DOKAZ)        */
+        /* RECENZIJE SEKCIJA                            */
         /* ============================================ */
         .recenzije-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 40px;
         }
         .recenzija-card {
-            background: #fff;
-            border: 1px solid #eee;
-            padding: 25px;
-            border-radius: 8px;
+            background: var(--background-light); /* Svijetla pozadina kartice */
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
         }
         .recenzija-card p {
             font-style: italic;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+            font-size: 1.15rem;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+            line-height: 1.7;
         }
         .recenzija-autor {
             text-align: right;
+            font-size: 1.05rem;
+            color: var(--primary-color);
         }
         .recenzija-autor strong {
-            color: var(--dark-color);
+            display: block;
+            margin-bottom: 5px;
         }
         .zvijezde {
             color: #f39c12; /* Žuta boja zvijezda */
+            font-size: 1.1rem;
         }
 
         /* ============================================ */
         /* KONTAKT SEKCIJA                              */
         /* ============================================ */
+        .kontakt-section {
+            background: #fff;
+        }
         .kontakt-flex {
             display: flex;
-            gap: 40px;
-            background: #fff;
-            border: 1px solid #eee;
-            padding: 40px;
-            border-radius: 8px;
+            gap: 60px;
+            background: var(--background-light);
+            border: 1px solid var(--border-color);
+            padding: 50px; /* Više paddinga */
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
         .kontakt-forma-wrap {
             flex: 1.5;
@@ -320,63 +410,92 @@
             flex: 1;
         }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--primary-color);
         }
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-family: var(--font-family);
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: var(--font-family-primary);
+            font-size: 1rem;
+            background-color: #fff;
+            color: var(--text-dark);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
         }
         
         .kontakt-info-wrap h3 {
-            font-size: 1.8rem;
-            color: var(--dark-color);
-            margin-bottom: 20px;
+            font-family: var(--font-family-secondary);
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-weight: normal;
         }
         .info-stavka {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-size: 1.1rem;
+            color: var(--text-dark);
         }
         .info-stavka i {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-right: 15px;
-            width: 25px;
+            font-size: 1.7rem;
+            color: var(--accent-color);
+            margin-right: 20px;
+            width: 30px;
             text-align: center;
         }
         .info-stavka p, .info-stavka a {
             margin: 0;
-            color: var(--text-color);
+            color: var(--text-dark);
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         .info-stavka a:hover {
+            color: var(--accent-color);
             text-decoration: underline;
         }
         .mapa-wrap {
             width: 100%;
-            margin-top: 20px;
-            border-radius: 8px;
+            margin-top: 30px;
+            border-radius: 10px;
             overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
         }
 
         /* ============================================ */
         /* FOOTER                                       */
         /* ============================================ */
         footer {
-            background: var(--dark-color);
-            color: #aaa;
-            padding: 30px 0;
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 40px 0;
             text-align: center;
+            font-size: 0.95rem;
+            margin-top: 40px;
+        }
+        footer a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: var(--accent-color);
         }
 
         /* ============================================ */
@@ -385,43 +504,86 @@
         .floating-call-btn {
             display: none; /* Skriveno na desktopu */
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--secondary-color);
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--accent-color);
             color: #fff;
-            padding: 15px 20px;
+            padding: 15px 25px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1rem;
             z-index: 999;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .floating-call-btn:hover {
+            transform: scale(1.05);
+            background-color: var(--primary-color);
         }
         .floating-call-btn i {
-            margin-right: 8px;
+            margin-right: 10px;
         }
 
         /* ============================================ */
         /* RESPONZIVNI DIZAJN (MEDIA QUERIES)           */
         /* ============================================ */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+            .section-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 40px;
+            }
+            .o-nama-flex, .kontakt-flex {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .o-nama-image img {
+                max-width: 100%;
+            }
+            .o-nama-text .section-title, .o-nama-text h3 {
+                text-align: center;
+            }
+        }
+
         @media (max-width: 768px) {
             /* ----- MOBILNA NAVIGACIJA ----- */
+            .navbar {
+                top: 0;
+                left: 0;
+                transform: translateX(0);
+                width: 100%;
+                border-radius: 0;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                background: #fff; /* Skini prozirnost za mobitel */
+                padding: 1rem 0;
+            }
+            .navbar .container {
+                padding: 0 20px;
+            }
             .nav-menu {
                 position: fixed;
-                left: -100%; /* Skriveno van ekrana */
+                left: -100%;
                 top: 70px; /* Ispod headera */
                 flex-direction: column;
                 background-color: #fff;
                 width: 100%;
+                height: calc(100vh - 70px); /* Puna visina ekrana - header */
                 text-align: center;
                 transition: 0.3s;
                 box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+                overflow-y: auto; /* Za skrolanje ako je puno linkova */
             }
             .nav-menu.active {
-                left: 0; /* Pokaži izbornik */
+                left: 0;
             }
             .nav-item {
-                margin: 1.5rem 0;
+                margin: 1.8rem 0;
+            }
+            .nav-link {
+                font-size: 1.3rem;
             }
             .hamburger {
                 display: block;
@@ -430,18 +592,25 @@
                 opacity: 0;
             }
             .hamburger.active .bar:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
+                transform: translateY(9px) rotate(45deg);
             }
             .hamburger.active .bar:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
+                transform: translateY(-9px) rotate(-45deg);
             }
             .nav-phone-desktop {
-                display: none; /* Sakrij desktop poziv */
+                display: none;
             }
 
             /* ----- Ostale sekcije ----- */
+            .hero {
+                min-height: 500px;
+                padding-top: 100px; /* Prilagodite za fiksni header */
+            }
             .hero-text h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
             }
             .hero-cta {
                 display: flex;
@@ -449,16 +618,7 @@
             }
             .hero-cta .btn {
                 width: 100%;
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-            
-            .o-nama-flex, .kontakt-flex {
-                flex-direction: column;
-            }
-            
-            .o-nama-image {
-                text-align: center;
+                margin: 0 0 15px 0;
             }
             
             .recenzije-grid {
@@ -466,11 +626,42 @@
             }
             
             .kontakt-flex {
-                padding: 20px;
+                padding: 30px;
             }
 
             .floating-call-btn {
-                display: block; /* Pokaži gumb za poziv na mobitelu */
+                display: flex; /* Pokaži gumb za poziv na mobitelu */
+                align-items: center;
+                justify-content: center;
+                padding: 12px 20px;
+                font-size: 1rem;
+                bottom: 15px;
+                right: 15px;
+            }
+            .floating-call-btn i {
+                font-size: 1.2rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .usluga-card h3 {
+                font-size: 1.5rem;
+            }
+            .kontakt-info-wrap h3 {
+                font-size: 1.8rem;
+            }
+            .info-stavka {
+                font-size: 1rem;
             }
         }
     </style>
@@ -489,7 +680,7 @@
                     <li class="nav-item"><a href="#kontakt" class="nav-link">Kontakt</a></li>
                 </ul>
                 
-                <a href="tel:+3851234567" class="nav-phone-desktop"><i class="fas fa-phone"></i> +385 1 234 567</a>
+                <a href="tel:+3851234567" class="nav-phone-desktop"><i class="fas fa-phone-alt"></i> +385 1 234 567</a>
                 
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -500,14 +691,14 @@
         </nav>
     </header>
 
-    <section class="hero">
+    <section class="hero animate-on-scroll">
         <div class="container hero-content">
             <div class="hero-text">
-                <h1>Vratite svoj osmijeh. Bezbolna i moderna stomatologija u Zagrebu.</h1>
-                <p class="hero-subtitle">Crnojević Dental Studio nudi kompletne stomatološke usluge za cijelu obitelj. Vaš osmijeh je naš prioritet.</p>
+                <h1>Transformirajte svoj osmijeh. Vrhunska stomatologija u srcu Zagreba.</h1>
+                <p class="hero-subtitle">Crnojević Dental Studio posvećen je pružanju personaliziranih, estetskih i funkcionalnih rješenja za vaš savršen osmijeh.</p>
                 
                 <div class="hero-cta">
-                    <a href="#kontakt-forma" class="btn btn-primary">Zakažite termin online</a>
+                    <a href="#kontakt-forma" class="btn btn-primary">Zakažite konzultacije</a>
                     <a href="tel:+3851234567" class="btn btn-secondary">Hitni slučajevi? Nazovite odmah</a>
                 </div>
             </div>
@@ -516,29 +707,29 @@
 
     <section id="usluge" class="usluge-section">
         <div class="container">
-            <h2 class="section-title">Naše usluge</h2>
-            <p class="section-subtitle">Pružamo sve što je potrebno za vaš savršen osmijeh.</p>
+            <h2 class="section-title">Naše Premium Usluge</h2>
+            <p class="section-subtitle">Spoj umjetnosti, znanosti i moderne tehnologije za dugotrajan i blistav osmijeh.</p>
             
             <div class="usluge-grid">
                 <div class="usluga-card">
-                    <i class="fas fa-tooth icon-large"></i>
-                    <h3>Implantati i Protetika</h3>
-                    <p>Vratite punu funkciju i izgled zuba modernim implantatima.</p>
-                </div>
-                <div class="usluga-card">
-                    <i class="fas fa-magic icon-large"></i>
+                    <i class="fas fa-teeth icon-large"></i>
                     <h3>Estetska Stomatologija</h3>
-                    <p>Izbjeljivanje, ljuskice i potpuni "smile makeover".</p>
+                    <p>Fasete, izbjeljivanje, krunice i sve za besprijekoran izgled.</p>
                 </div>
                 <div class="usluga-card">
-                    <i class="fas fa-stethoscope icon-large"></i>
-                    <h3>Redovni Pregledi</h3>
-                    <p>Prevencija je ključ zdravlja. Čišćenje kamenca i pregledi.</p>
+                    <i class="fas fa-implant icon-large"></i>
+                    <h3>Dentalni Implantati</h3>
+                    <p>Trajna rješenja za izgubljene zube s vrhunskim implantatima.</p>
                 </div>
                 <div class="usluga-card">
-                    <i class="fas fa-exclamation-triangle icon-large"></i>
-                    <h3>Hitna Stomatologija</h3>
-                    <p>Bol, slomljen zub? Tu smo za vas kada je najhitnije.</p>
+                    <i class="fas fa-tooth icon-large"></i>
+                    <h3>Restaurativna Stomatologija</h3>
+                    <p>Ispuni, liječenje korijena i obnova oštećenih zuba.</p>
+                </div>
+                <div class="usluga-card">
+                    <i class="fas fa-heartbeat icon-large"></i>
+                    <h3>Preventivna Njega</h3>
+                    <p>Redovni pregledi i higijena za dugoročno zdravlje desni i zuba.</p>
                 </div>
             </div>
         </div>
@@ -547,36 +738,37 @@
     <section id="o-nama" class="o-nama-section">
         <div class="container o-nama-flex">
             <div class="o-nama-image">
-                <img src="https://via.placeholder.com/500x500.png?text=Slika+Dr.+Crnojević" alt="Dr. Crnojević, stomatolog Zagreb">
+                <img src="https://via.placeholder.com/500x500.png?text=Dr.+Crnojević" alt="Dr. [Ime] Crnojević, Vlasnik i glavni stomatolog Crnojević Dental Studija u Zagrebu">
             </div>
             <div class="o-nama-text">
-                <h2 class="section-title">Upoznajte naš tim</h2>
+                <h2 class="section-title">Filozofija Našeg Studija</h2>
                 <h3>Dr. [Ime] Crnojević</h3>
-                <p>S više od [Broj] godina iskustva, naš cilj je pružiti vam najugodnije stomatološko iskustvo. Razumijemo da posjet zubaru može biti stresan, zato smo stvorili okruženje u kojem ćete se osjećati sigurno i opušteno.</p>
-                <p>Naša moderna ordinacija u Zagrebu opremljena je najnovijom tehnologijom...</p>
-                <a href="#kontakt" class="btn btn-primary-outline">Slobodno nas kontaktirajte</a>
+                <p>U Crnojević Dental Studiju vjerujemo da je zdrav osmijeh temelj samopouzdanja. Naš pristup kombinira preciznost, najnoviju tehnologiju i individualni pristup svakom pacijentu. Posvećeni smo stvaranju opuštenog okruženja gdje se osjećate ugodno i informirano, a vaši ciljevi su naša misija.</p>
+                <p>Koristimo isključivo provjerene materijale i protokole kako bismo osigurali izvanredne i dugotrajne rezultate. Vaše zdravlje i zadovoljstvo su naši prioriteti.</p>
+                <a href="#kontakt" class="btn btn-secondary">Kontaktirajte nas za više informacija</a>
             </div>
         </div>
     </section>
 
     <section id="recenzije" class="recenzije-section">
         <div class="container">
-            <h2 class="section-title">Što kažu naši pacijenti</h2>
+            <h2 class="section-title">Iskustva Naših Pacijenata</h2>
+            <p class="section-subtitle">Poslušajte što kažu oni kojima smo pomogli vratiti blistav osmijeh.</p>
             
             <div class="recenzije-grid">
                 <div class="recenzija-card">
-                    <p>"Najbolji zubar u Zagrebu! Došao sam s velikim bolovima, riješili su sve brzo i profesionalno. Cijeli tim Crnojević Dental Studija je izuzetno ljubazan."</p>
+                    <p>"Profesionalnost i ljubaznost na najvišoj razini. Dr. Crnojević je vratio moje samopouzdanje, a rezultati su iznad očekivanja. Preporučam Crnojević Dental Studio svima!"</p>
                     <div class="recenzija-autor">
-                        <strong>- Marko M.</strong>
+                        <strong>- Petra K., Zagreb</strong>
                         <div class="zvijezde">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                     </div>
                 </div>
                 <div class="recenzija-card">
-                    <p>"Godinama sam se bojala zubara, ali Dr. Crnojević je to promijenio. Strpljivi, nježni i stručni. Preporučam svima!"</p>
+                    <p>"Moderno opremljena ordinacija i izuzetno stručan tim. Osjećao sam se ugodno i sigurno tijekom cijelog tretmana. Hvala na novom, prekrasnom osmijehu!"</p>
                     <div class="recenzija-autor">
-                        <strong>- Ana P.</strong>
+                        <strong>- Ivan D., Zaprešić</strong>
                         <div class="zvijezde">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
@@ -588,13 +780,13 @@
 
     <section id="kontakt" class="kontakt-section">
         <div class="container">
-            <h2 class="section-title">Zakažite svoj termin</h2>
+            <h2 class="section-title">Zakažite Vaš Termin</h2>
+            <p class="section-subtitle">Kontaktirajte nas danas i napravite prvi korak prema osmijehu kakav ste oduvijek željeli.</p>
             <div class="kontakt-flex">
                 
                 <div class="kontakt-forma-wrap">
-                    
                     <form id="kontakt-forma" action="https://formspree.io/f/[VAŠ_FORMSpree_ID]" method="POST">
-                        <p>Ispunite obrazac ili nas nazovite. Javit ćemo vam se u najkraćem roku.</p>
+                        <p style="margin-bottom: 25px;">Ispunite obrazac ili nas nazovite. Javit ćemo vam se u najkraćem roku.</p>
                         <div class="form-group">
                             <label for="ime">Ime i Prezime:</label>
                             <input type="text" id="ime" name="Ime i Prezime" required>
@@ -604,30 +796,30 @@
                             <input type="email" id="email" name="_replyto" required>
                         </div>
                         <div class="form-group">
-                            <label for="telefon">Telefon:</label>
+                            <label for="telefon">Telefon (opcionalno):</label>
                             <input type="tel" id="telefon" name="Telefon">
                         </div>
                         <div class="form-group">
-                            <label for="poruka">Vaša poruka (npr. željeni termin):</label>
-                            <textarea id="poruka" name="Poruka" rows="4"></textarea>
+                            <label for="poruka">Vaša poruka ili željeni termin:</label>
+                            <textarea id="poruka" name="Poruka" rows="6"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Pošalji upit</button>
                     </form>
                 </div>
                 
                 <div class="kontakt-info-wrap">
-                    <h3>Kontakt informacije</h3>
+                    <h3>Crnojević Dental Studio</h3>
                     
                     <div class="info-stavka">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
-                            <strong>Adresa</strong>
-                            <p>[Vaša Ulica 123], Zagreb</p>
+                            <strong>Lokacija</strong>
+                            <p>[Vaša Ulica 123], 10000 Zagreb</p>
                         </div>
                     </div>
                     
                      <div class="info-stavka">
-                        <i class="fas fa-phone"></i>
+                        <i class="fas fa-phone-alt"></i>
                         <div>
                             <strong>Telefon</strong>
                             <p><a href="tel:+3851234567">+385 1 234 567</a></p>
@@ -652,9 +844,9 @@
                     
                     <div class="mapa-wrap">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89020.2440316719!2d15.890333346927068!3d45.84005183866164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d692c902d51d%3A0x1e11e30f103c1b6c!2sZagreb!5e0!3m2!1shr!2shr!4v1667823333333!5m2!1shr!2shr" 
+                            src="http://googleusercontent.com/maps.google.com/3" 
                             width="100%" 
-                            height="250" 
+                            height="300" 
                             style="border:0;" 
                             allowfullscreen="" 
                             loading="lazy" 
@@ -669,37 +861,61 @@
     <footer>
         <div class="container">
             <p>© 2025 Crnojević Dental Studio. Sva prava pridržana.</p>
+            <p>Dizajn & Razvoj: [Vaše Ime/Tvrtka] | <a href="#">Politika privatnosti</a></p>
         </div>
     </footer>
 
     <a href="tel:+3851234567" class="floating-call-btn">
-        <i class="fas fa-phone"></i> Nazovite nas
+        <i class="fas fa-phone-alt"></i> Nazovite nas
     </a>
 
 
     <script>
-        // Dohvaćanje elemenata
+        // Mobilni izbornik
         const hamburger = document.querySelector(".hamburger");
         const navMenu = document.querySelector(".nav-menu");
         const navLinks = document.querySelectorAll(".nav-link");
 
-        // Funkcija za otvaranje/zatvaranje izbornika
         function toggleMenu() {
             hamburger.classList.toggle("active");
             navMenu.classList.toggle("active");
         }
 
-        // Dodaj 'click' event na hamburger
         hamburger.addEventListener("click", toggleMenu);
 
-        // Dodaj 'click' event na svaki link u izborniku
-        // Ovo služi da se izbornik automatski zatvori kad se klikne na link (na mobitelu)
         navLinks.forEach(link => {
             link.addEventListener("click", () => {
                 if (navMenu.classList.contains("active")) {
                     toggleMenu();
                 }
             });
+        });
+
+        // Animacije sekcija prilikom skrolanja (Intersection Observer)
+        const sections = document.querySelectorAll('section:not(.hero)'); // Sve sekcije osim hero
+
+        const observerOptions = {
+            root: null, // Promatraj viewport
+            rootMargin: '0px',
+            threshold: 0.2 // Pokreni animaciju kada 20% sekcije uđe u viewport
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                    observer.unobserve(entry.target); // Prekini promatranje nakon animacije
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Dodatno, ako želite da se hero sekcija animira pri učitavanju stranice
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.hero').classList.add('animate-on-scroll');
         });
     </script>
 </body>
