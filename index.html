@@ -36,8 +36,7 @@
             line-height: 1.6;
             color: var(--text-dark);
             background-color: #fff;
-            /* KLJUČNI POPRAVAK: Pomičemo tijelo prema dolje kako bi stalo ispod headera */
-            padding-top: 120px; /* Prostor za desktop lebdeći header (visina + top-margin) */
+            padding-top: 120px; /* Prostor za desktop lebdeći header */
         }
 
         html {
@@ -154,7 +153,6 @@
             padding: 0 30px;
         }
 
-        /* Logo ikona zuba */
         .nav-logo {
             text-decoration: none;
         }
@@ -260,6 +258,81 @@
         .hero-cta .btn {
             margin: 0 15px;
             margin-bottom: 15px;
+        }
+
+        /* ============================================
+         * NAJDOKTOR BANNER (NOVO)
+         * ============================================
+        */
+        .trust-banner-section {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: var(--background-light); /* Ista pozadina kao hero */
+            border-bottom: 1px solid var(--border-color);
+            /* Odmah vidljivo, ne čeka animaciju skrolanja */
+            opacity: 1; 
+            transform: translateY(0);
+        }
+
+        .trust-title {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-scroller {
+            overflow: hidden;
+            position: relative;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+        }
+
+        .scroller-track {
+            display: flex;
+            width: max-content; 
+            /* 9 logotipa * 36s trajanja = 324s / prebrzo */
+            /* 9 logotipa * 5s = 45s trajanje */
+            animation: scroll 45s linear infinite; 
+        }
+
+        .logo-item {
+            display: grid;
+            place-items: center;
+            width: 200px; /* Širina svakog logotipa */
+            padding: 0 20px;
+        }
+
+        .logo-item img {
+            max-height: 80px; /* Visina logotipa */
+            width: auto;
+            filter: grayscale(100%); /* Crno-bijelo da se uklopi u premium temu */
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-scroller:hover .scroller-track {
+            animation-play-state: paused;
+        }
+
+        .logo-item img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* Definicija animacije */
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                /* (9 logotipa * 200px širine) = 1800px */
+                transform: translateX(calc(-200px * 9)); 
+            }
         }
 
         /* ============================================ */
@@ -504,7 +577,7 @@
         /* MOBILNI CTA GUMB                             */
         /* ============================================ */
         .floating-call-btn {
-            display: flex; /* Koristi flex za lakše centriranje ikone i teksta */
+            display: flex;
             align-items: center;
             justify-content: center;
             position: fixed;
@@ -552,7 +625,6 @@
             .o-nama-text .section-title, .o-nama-text h3 {
                 text-align: center;
             }
-            /* Usluge idu u 2 stupca na tabletu */
             .usluge-grid {
                 grid-template-columns: 1fr 1fr;
             }
@@ -562,12 +634,10 @@
         }
 
         @media (max-width: 768px) {
-            /* KLJUČNI POPRAVAK: Mijenjamo padding tijela za mobilni header */
             body {
                 padding-top: var(--header-height-mobile); /* Fiksna visina mobilnog headera */
             }
 
-            /* --- Mobilni stil (fiksiran na vrhu) --- */
             .navbar {
                 top: 0;
                 left: 0;
@@ -575,8 +645,8 @@
                 width: 100%;
                 border-radius: 0;
                 box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-                background: #fff; /* Skini prozirnost za mobitel */
-                padding: 0; /* Resetiraj padding */
+                background: #fff;
+                padding: 0;
                 height: var(--header-height-mobile);
             }
             .navbar .container {
@@ -584,11 +654,10 @@
                 height: 100%;
             }
             
-            /* Mobilni izbornik */
             .nav-menu {
                 position: fixed;
                 left: -100%;
-                top: var(--header-height-mobile); /* Počinje ispod headera */
+                top: var(--header-height-mobile);
                 flex-direction: column;
                 background-color: #fff;
                 width: 100%;
@@ -620,7 +689,6 @@
             .hamburger.active .bar:nth-child(3) {
                 transform: translateY(-9px) rotate(-45deg);
             }
-            /* Sakrij CTA gumb u navigaciji, oslanjamo se na hamburger */
             .nav-cta-button {
                 display: none;
             }
@@ -628,14 +696,8 @@
             /* ----- Ostale sekcije ----- */
             .hero {
                 min-height: 400px;
-                padding-top: 40px; /* Smanji padding unutar sekcije */
+                padding-top: 40px; 
                 padding-bottom: 40px;
-            }
-            .o-nama-text {
-                text-align: center;
-            }
-            .o-nama-text p {
-                text-align: center;
             }
             .hero-text h1 {
                 font-size: 2.8rem;
@@ -652,7 +714,15 @@
                 margin: 0 0 15px 0;
             }
             
-            /* Usluge idu u 1 stupac na mobitelu */
+            /* --- POPRAVAK ZA CENTRIRANJE "O NAMA" --- */
+            .o-nama-text {
+                text-align: center;
+            }
+            .o-nama-text p {
+                text-align: center;
+            }
+            /* --- KRAJ POPRAVKA --- */
+            
             .usluge-grid {
                 grid-template-columns: 1fr;
             }
@@ -671,12 +741,29 @@
                 font-size: 1.1rem;
                 margin-right: 8px;
             }
-            .floating-call-btn span {
-                /* Opcionalno: sakrij tekst na jako malim ekranima */
-                /* display: none; */ 
-            }
+
             section {
                 padding: 60px 0;
+            }
+
+            /* --- Postavke za Najdoktor skroler (MOBILNI) --- */
+            .logo-item {
+                width: 150px; /* Smanji širinu logotipa na mobitelu */
+                padding: 0 15px;
+            }
+            .logo-item img {
+                max-height: 60px; /* Smanji visinu logotipa */
+            }
+
+            /* Mora se redefinirati animacija za novu širinu */
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                /* (9 logotipa * 150px širine) = 1350px */
+                100% {
+                    transform: translateX(calc(-150px * 9));
+                }
             }
         }
     </style>
@@ -721,6 +808,35 @@
         </div>
     </section>
 
+    <section id="trust-banner" class="trust-banner-section">
+        <div class="container">
+            <h4 class="trust-title">Ponosni dobitnici Najdoktor priznanja iz godine u godinu</h4>
+            
+            <div class="logo-scroller" data-speed="slow">
+                <div class="scroller-track">
+                    <div class="logo-item"><img src="/images/2014_najdoktor.avif" alt="Najdoktor 2014"></div>
+                    <div class="logo-item"><img src="/images/2015_najdoktor.avif" alt="Najdoktor 2015"></div>
+                    <div class="logo-item"><img src="/images/2016_najdoktor.avif" alt="Najdoktor 2016"></div>
+                    <div class="logo-item"><img src="/images/2017_najdoktor.avif" alt="Najdoktor 2017"></div>
+                    <div class="logo-item"><img src="/images/2018_najdoktor.avif" alt="Najdoktor 2018"></div>
+                    <div class="logo-item"><img src="/images/2019_najdoktor.avif" alt="Najdoktor 2019"></div>
+                    <div class="logo-item"><img src="/images/2020_najdoktor.avif" alt="Najdoktor 2020"></div>
+                    <div class="logo-item"><img src="/images/2023_najdoktor.avif" alt="Najdoktor 2023"></div>
+                    <div class="logo-item"><img src="/images/2024_najdoktor.avif" alt="Najdoktor 2024"></div>
+                    
+                    <div class="logo-item" aria-hidden="true"><img src="/images/2014_najdoktor.avif" alt="Najdoktor 2014"></div>
+                    <div class="logo-item" aria-hidden="true"><img src="/images/2015_najdoktor.avif" alt="Najdoktor 2015"></div>
+                    <div class="logo-item" aria-hidden="true"><img src="/images/2016_najdoktor.avif" alt="Najdoktor 2016"></div>
+                    <div class="logo-item" aria-hidden="true"><img src="/images/2017_najdoktor.avif" alt="Najdoktor 2017"></div>
+                    <div class="logo-item" aria-hidden="true"><img src="/images/2018_najdoktor.avif" alt="Najdoktor 2018"></div>
+                    <div class="logo-item" aria-hidden="true"><img src="/images/2019_najdoktor.avif" alt="Najdoktor 2019"></div>
+                    <div class="logo-item" aria-hidden="true"><img src="/images/2020_najdoktor.avif" alt="Najdoktor 2020"></div>
+                    <div class="logo-item" aria-hidden="true"><img src="/images/2023_najdoktor.avif" alt="Najdoktor 2023"></div>
+                    <div class="logo-item" aria-hidden="true"><img src="/images/2024_najdoktor.avif" alt="Najdoktor 2024"></div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section id="usluge" class="usluge-section">
         <div class="container">
             <h2 class="section-title">Naše Usluge</h2>
@@ -852,7 +968,15 @@
                     </div>
                     
                     <div class="mapa-wrap">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d36504.314437418645!2d15.951770924224991!3d45.80718578973482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d65edcd80375%3A0x359ae9444d21280a!2sCrnojevi%C4%87%20Dental%20Studio%20(%20CDS%20)!5e0!3m2!1shr!2shr!4v1760872724178!5m2!1shr!2shr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe 
+                            src="http://googleusercontent.com/maps.google.com/7" 
+                            width="100%" 
+                            height="300" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
                     </div>
                 </div>
             </div>
