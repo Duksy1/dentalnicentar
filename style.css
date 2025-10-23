@@ -247,6 +247,61 @@ section.animate-on-scroll {
     margin-bottom: 15px;
 }
 
+/* ============================================ */
+/* HERO POZADINSKI VIDEO STILOVI                */
+/* ============================================ */
+.hero {
+    position: relative; /* Potrebno da bi video ostao unutar hero sekcije */
+    overflow: hidden; /* Osigurava da video ne "curi" van */
+    background-color: var(--primary-color); /* Fallback boja dok se poster/video ne učita */
+}
+
+.hero-video-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Ispod sadržaja */
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Pokriva cijelu površinu, reže višak */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(var(--primary-color-rgb), 0.5); /* Poluprozirni tamni sloj (podesite 0.5) */
+    z-index: 2; /* Iznad videa, ispod teksta */
+}
+
+/* Osiguraj da je tekst IZNAD videa i sloja */
+.hero .hero-content {
+    position: relative;
+    z-index: 3; 
+}
+
+/* Opcionalno: Promijeni boju teksta u bijelu ako je overlay taman */
+.hero .hero-text h1,
+.hero .hero-text .hero-subtitle {
+    color: #fff; /* Ili neka druga svijetla boja */
+}
+/* Možda ćete trebati prilagoditi i boje gumba ako se ne vide dobro */
+.hero .hero-cta .btn-secondary {
+    border-color: #fff;
+    color: #fff;
+}
+ .hero .hero-cta .btn-secondary:hover {
+    background-color: #fff;
+    color: var(--primary-color);
+}
+
 /* ============================================
  * NAJDOKTOR BANNER (KARUSEL)
  * ============================================
@@ -792,4 +847,5 @@ footer a:hover {
     }
 
 }
+
 
