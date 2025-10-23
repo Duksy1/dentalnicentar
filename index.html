@@ -132,7 +132,6 @@
             z-index: 1000;
             backdrop-filter: blur(8px);
             
-            /* --- Desktop stil (lebdeći) --- */
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
@@ -156,10 +155,12 @@
         .nav-logo {
             text-decoration: none;
         }
+        
+        /* NOVI STIL ZA LOGO SLIKU */
         .nav-logo-image {
-            height: 45px; 
-            width: auto;  
-            display: block; 
+            height: 45px; /* Ključna vrijednost - prilagodite ako treba */
+            width: auto;  /* Automatska širina za očuvanje proporcija */
+            display: block; /* Uklanja mali neželjeni razmak ispod slike */
         }
 
         .nav-menu {
@@ -227,7 +228,7 @@
             display: flex;
             align-items: center;
             min-height: 500px;
-            padding-top: 60px; /* Dodatni padding unutar sekcije */
+            padding-top: 60px; 
             padding-bottom: 60px;
         }
 
@@ -258,15 +259,14 @@
         }
 
         /* ============================================
-         * NAJDOKTOR BANNER (NOVO)
+         * NAJDOKTOR BANNER (KARUSEL)
          * ============================================
         */
         .trust-banner-section {
             padding-top: 40px;
             padding-bottom: 40px;
-            background-color: var(--background-light); /* Ista pozadina kao hero */
+            background-color: var(--background-light); 
             border-bottom: 1px solid var(--border-color);
-            /* Odmah vidljivo, ne čeka animaciju skrolanja */
             opacity: 1; 
             transform: translateY(0);
         }
@@ -291,22 +291,20 @@
         .scroller-track {
             display: flex;
             width: max-content; 
-            /* 9 logotipa * 36s trajanja = 324s / prebrzo */
-            /* 9 logotipa * 5s = 45s trajanje */
             animation: scroll 45s linear infinite; 
         }
 
         .logo-item {
             display: grid;
             place-items: center;
-            width: 200px; /* Širina svakog logotipa */
+            width: 200px; 
             padding: 0 20px;
         }
 
         .logo-item img {
-            max-height: 80px; /* Visina logotipa */
+            max-height: 80px; 
             width: auto;
-            filter: grayscale(100%); /* Crno-bijelo da se uklopi u premium temu */
+            filter: grayscale(100%); 
             opacity: 0.7;
             transition: all 0.3s ease;
         }
@@ -321,19 +319,17 @@
             transform: scale(1.1);
         }
 
-        /* Definicija animacije */
         @keyframes scroll {
             0% {
                 transform: translateX(0);
             }
             100% {
-                /* (9 logotipa * 200px širine) = 1800px */
                 transform: translateX(calc(-200px * 9)); 
             }
         }
 
         /* ============================================ */
-        /* USLUGE SEKCIJA (Samo 3)                      */
+        /* USLUGE SEKCIJA (NOVA VERZIJA S 8 SLIKA)      */
         /* ============================================ */
         .usluge-section {
             background: #fff;
@@ -341,38 +337,65 @@
 
         .usluge-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Fiksno 3 stupca */
-            gap: 40px;
+            grid-template-columns: repeat(4, 1fr); /* NOVO: 4 stupca */
+            gap: 30px; 
         }
 
         .usluga-card {
             background: #fff;
             border: 1px solid var(--border-color);
             border-radius: 10px;
-            padding: 35px;
-            text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            overflow: hidden; /* Osigurava da slika poštuje radius */
         }
         .usluga-card:hover {
             transform: translateY(-7px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.08);
             border-color: var(--accent-color);
         }
-        .usluga-card h3 {
+        
+        .usluga-card-image {
+            width: 100%;
+            height: 200px; /* Fiksna visina za sve slike */
+            overflow: hidden;
+        }
+        .usluga-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Osigurava da slika ispuni prostor bez izobličenja */
+            transition: transform 0.4s ease;
+        }
+        .usluga-card:hover .usluga-card-image img {
+            transform: scale(1.05); /* Suptilni zoom na hover */
+        }
+        .usluga-card-content {
+            padding: 25px; 
+        }
+        .usluga-card-content h3 {
             font-family: var(--font-family-secondary);
-            font-size: 1.8rem;
+            font-size: 1.5rem; 
             color: var(--primary-color);
-            margin: 20px 0 15px;
+            margin: 0 0 10px 0;
             font-weight: normal;
         }
-        .icon-large {
-            font-size: 3rem;
+        .usluga-card-content p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .btn-detalji { /* CSS za link "Saznaj više" */
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: bold;
             color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
-        .usluga-card p {
-            font-size: 1.05rem;
+        .btn-detalji:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
         }
+
         
         /* ============================================ */
         /* O NAMA SEKCIJA                               */
@@ -622,6 +645,8 @@
             .o-nama-text .section-title, .o-nama-text h3 {
                 text-align: center;
             }
+            
+            /* Usluge idu u 2 stupca na tabletu */
             .usluge-grid {
                 grid-template-columns: 1fr 1fr;
             }
@@ -632,7 +657,7 @@
 
         @media (max-width: 768px) {
             body {
-                padding-top: var(--header-height-mobile); /* Fiksna visina mobilnog headera */
+                padding-top: var(--header-height-mobile); 
             }
 
             .navbar {
@@ -711,15 +736,15 @@
                 margin: 0 0 15px 0;
             }
             
-            /* --- POPRAVAK ZA CENTRIRANJE "O NAMA" --- */
+            /* Popravak za centriranje "O nama" */
             .o-nama-text {
                 text-align: center;
             }
             .o-nama-text p {
                 text-align: center;
             }
-            /* --- KRAJ POPRAVKA --- */
             
+            /* Usluge idu u 1 stupac na mobitelu */
             .usluge-grid {
                 grid-template-columns: 1fr;
             }
@@ -745,19 +770,17 @@
 
             /* --- Postavke za Najdoktor skroler (MOBILNI) --- */
             .logo-item {
-                width: 150px; /* Smanji širinu logotipa na mobitelu */
+                width: 150px;
                 padding: 0 15px;
             }
             .logo-item img {
-                max-height: 60px; /* Smanji visinu logotipa */
+                max-height: 60px;
             }
 
-            /* Mora se redefinirati animacija za novu širinu */
             @keyframes scroll {
                 0% {
                     transform: translateX(0);
                 }
-                /* (9 logotipa * 150px širine) = 1350px */
                 100% {
                     transform: translateX(calc(-150px * 9));
                 }
@@ -795,8 +818,8 @@
     <section class="hero animate-on-scroll">
         <div class="container hero-content">
             <div class="hero-text">
-                <h1>Vaš osmijeh, naša strast. Vaše povjerenje, naš uspjeh.</h1>
-                <p class="hero-subtitle">42 godine iskustva i više od 5 000 zadovoljnih pacijenata.</p>
+                <h1>Transformirajte svoj osmijeh. Vrhunska stomatologija u Zagrebu.</h1>
+                <p class="hero-subtitle">Crnojević Dental Studio posvećen je pružanju personaliziranih, estetskih i funkcionalnih rješenja.</p>
                 <div class="hero-cta">
                     <a href="#kontakt-forma" class="btn btn-primary">Zakažite konzultacije</a>
                     <a href="tel:+3851234567" class="btn btn-secondary">Hitni slučajevi? Nazovite</a>
@@ -834,27 +857,94 @@
             </div>
         </div>
     </section>
+
     <section id="usluge" class="usluge-section">
         <div class="container">
-            <h2 class="section-title">Naše Usluge</h2>
-            <p class="section-subtitle">Spoj umjetnosti, znanosti i moderne tehnologije za vaš osmijeh.</p>
+            <h2 class="section-title">Naš Pristup Vašem Osmijehu</h2>
+            <p class="section-subtitle">Pružamo kompletna stomatološka rješenja, od dijagnostike do finalnog osmijeha, koristeći najmoderniju tehnologiju.</p>
             
             <div class="usluge-grid">
+                
                 <div class="usluga-card">
-                    <i class="fas fa-magic-wand-sparkles icon-large"></i>
-                    <h3>Estetska Stomatologija</h3>
-                    <p>Fasete, izbjeljivanje, krunice i sve za besprijekoran izgled.</p>
+                    <div class="usluga-card-image">
+                        <img src="/images/Estetska stomatologija.jpg" alt="Estetska stomatologija Crnojević Dental Studio">
+                    </div>
+                    <div class="usluga-card-content">
+                        <h3>Estetska Stomatologija</h3>
+                        <p>Fasete, izbjeljivanje i sve za postizanje besprijekornog osmijeha.</p>
+                        </div>
                 </div>
+
                 <div class="usluga-card">
-                    <i class="fas fa-tooth icon-large"></i>
-                    <h3>Restaurativna Stomatologija</h3>
-                    <p>Ispuni, liječenje korijena i potpuna obnova oštećenih zuba.</p>
+                    <div class="usluga-card-image">
+                        <img src="/images/Protetika.png" alt="Zubna protetika Crnojević Dental Studio">
+                    </div>
+                    <div class="usluga-card-content">
+                        <h3>Protetika</h3>
+                        <p>Krunice, mostovi i ljuskice za potpunu funkcionalnu i estetsku obnovu.</p>
+                        </div>
                 </div>
+
                 <div class="usluga-card">
-                    <i class="fas fa-shield-alt icon-large"></i>
-                    <h3>Preventivna Njega</h3>
-                    <p>Redovni pregledi i higijena za dugoročno zdravlje desni i zuba.</p>
+                    <div class="usluga-card-image">
+                        <img src="/images/Oralna kirurgija.jpeg" alt="Oralna kirurgija Crnojević Dental Studio">
+                    </div>
+                    <div class="usluga-card-content">
+                        <h3>Oralna Kirurgija</h3>
+                        <p>Sigurni i bezbolni zahvati, uključujući vađenje umnjaka i implantologiju.</p>
+                        </div>
                 </div>
+                
+                <div class="usluga-card">
+                    <div class="usluga-card-image">
+                        <img src="/images/Paradontološka terapija.jpg" alt="Parodontologija Crnojević Dental Studio">
+                    </div>
+                    <div class="usluga-card-content">
+                        <h3>Parodontologija</h3>
+                        <p>Liječenje bolesti desni i potpornih struktura zuba za dugoročno zdravlje.</p>
+                        </div>
+                </div>
+
+                <div class="usluga-card">
+                    <div class="usluga-card-image">
+                        <img src="/images/Konzervativna terapija.jpeg" alt="Konzervativna terapija Crnojević Dental Studio">
+                    </div>
+                    <div class="usluga-card-content">
+                        <h3>Konzervativna Terapija</h3>
+                        <p>Liječenje karijesa i izrada preciznih, estetskih ispuna (plombi).</p>
+                        </div>
+                </div>
+
+                <div class="usluga-card">
+                    <div class="usluga-card-image">
+                        <img src="/images/Laserska terapija.jpg" alt="Laserska terapija Crnojević Dental Studio">
+                    </div>
+                    <div class="usluga-card-content">
+                        <h3>Laserska Terapija</h3>
+                        <p>Minimalno invazivni zahvati uz pomoć lasera za brži oporavak.</p>
+                        </div>
+                </div>
+                
+                <div class="usluga-card">
+                    <div class="usluga-card-image">
+                        <img src="/images/Funkcijska dijagnostika.jpg" alt="Funkcijska dijagnostika Crnojević Dental Studio">
+                    </div>
+                    <div class="usluga-card-content">
+                        <h3>Funkcijska Dijagnostika</h3>
+                        <p>Analiza zagriza i funkcije čeljusti za rješavanje kompleksnih problema.</p>
+                        </div>
+                </div>
+
+                <div class="usluga-card">
+                    <div class="usluga-card-image">
+                        <img src="/images/Osmijeh.jpeg" alt="Smile Design (Dizajn osmijeha) Crnojević Dental Studio">
+                    </div>
+                    <div class="usluga-card-content">
+                        <h3>Dizajn Osmijeha</h3>
+                        <p>Digitalno planiranje i vizualizacija vašeg novog, savršenog osmijeha.</p>
+                        </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -862,7 +952,7 @@
     <section id="o-nama" class="o-nama-section">
         <div class="container o-nama-flex">
             <div class="o-nama-image">
-                <img src="/images/zajednickaslika_CDK.jpeg" alt="Dr. Blaženko Crnojević, Vlasnik i tim Crnojević Dental Studija u Zagrebu">
+                <img src="https://via.placeholder.com/500x500.png?text=Dr.+Crnojević" alt="Dr. [Ime] Crnojević, Vlasnik i glavni stomatolog Crnojević Dental Studija u Zagrebu">
             </div>
             <div class="o-nama-text">
                 <h2 class="section-title">Filozofija Našeg Studija</h2>
@@ -965,7 +1055,15 @@
                     </div>
                     
                     <div class="mapa-wrap">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2158.687692287815!2d15.981425048339736!3d45.79794522264401!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d65edcd80375%3A0x359ae9444d21280a!2sCrnojevi%C4%87%20Dental%20Studio%20(%20CDS%20)!5e1!3m2!1shr!2shr!4v1761212195598!5m2!1shr!2shr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1303.938931067914!2d15.981475351741185!3d45.79816164439957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d65edcd80375%3A0x359ae9444d21280a!2sCrnojevi%C4%87%20Dental%20Studio%20(%20CDS%20)!5e1!3m2!1shr!2shr!4v1761211878420!5m2!1shr!2shr" 
+                            width="100%" 
+                            height="300" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
                     </div>
                 </div>
             </div>
@@ -1029,6 +1127,7 @@
     </script>
 </body>
 </html>
+
 
 
 
