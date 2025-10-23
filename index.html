@@ -14,6 +14,7 @@
         /* ============================================ */
         :root {
             --primary-color: #2c3e50; /* Tamno siva/crna */
+            --primary-color-rgb: 44, 62, 80; /* NOVO: RGB za prozirnost */
             --accent-color: #3498db; /* Elegantna plava za naglasak */
             --background-light: #f9f9f9; /* Vrlo svijetlo siva */
             --text-dark: #333;
@@ -21,8 +22,8 @@
             --font-family-primary: 'Arial', sans-serif;
             --font-family-secondary: 'Georgia', serif;
             
-            --header-height-desktop: 80px; /* Visina + padding headera */
-            --header-height-mobile: 70px;  /* Fiksna visina za mobitel */
+            --header-height-desktop: 80px;
+            --header-height-mobile: 70px;
         }
 
         * {
@@ -36,7 +37,7 @@
             line-height: 1.6;
             color: var(--text-dark);
             background-color: #fff;
-            padding-top: 120px; /* Prostor za desktop lebdeći header */
+            padding-top: 120px; 
         }
 
         html {
@@ -156,11 +157,10 @@
             text-decoration: none;
         }
         
-        /* NOVI STIL ZA LOGO SLIKU */
         .nav-logo-image {
-            height: 45px; /* Ključna vrijednost - prilagodite ako treba */
-            width: auto;  /* Automatska širina za očuvanje proporcija */
-            display: block; /* Uklanja mali neželjeni razmak ispod slike */
+            height: 45px; 
+            width: auto;  
+            display: block;
         }
 
         .nav-menu {
@@ -329,7 +329,7 @@
         }
 
         /* ============================================ */
-        /* USLUGE SEKCIJA (NOVA VERZIJA S 8 SLIKA)      */
+        /* USLUGE SEKCIJA (NOVI SLIDE-UP EFEKT)         */
         /* ============================================ */
         .usluge-section {
             background: #fff;
@@ -337,7 +337,7 @@
 
         .usluge-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* NOVO: 4 stupca */
+            grid-template-columns: repeat(4, 1fr); 
             gap: 30px; 
         }
 
@@ -347,7 +347,9 @@
             border-radius: 10px;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-            overflow: hidden; /* Osigurava da slika poštuje radius */
+            overflow: hidden;
+            position: relative; /* VAŽNO za overlay */
+            cursor: pointer; 
         }
         .usluga-card:hover {
             transform: translateY(-7px);
@@ -357,46 +359,62 @@
         
         .usluga-card-image {
             width: 100%;
-            height: 200px; /* Fiksna visina za sve slike */
+            height: 200px; 
             overflow: hidden;
         }
         .usluga-card-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Osigurava da slika ispuni prostor bez izobličenja */
+            object-fit: cover; 
             transition: transform 0.4s ease;
         }
         .usluga-card:hover .usluga-card-image img {
-            transform: scale(1.05); /* Suptilni zoom na hover */
+            transform: scale(1.05); 
         }
+        
         .usluga-card-content {
-            padding: 25px; 
+            position: absolute; 
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            color: #fff;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+            transform: translateY(calc(100% - 85px)); /* Otkriva samo naslov */
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
+        
         .usluga-card-content h3 {
             font-family: var(--font-family-secondary);
-            font-size: 1.5rem; 
-            color: var(--primary-color);
+            font-size: 1.6rem; 
+            color: #fff;
             margin: 0 0 10px 0;
             font-weight: normal;
         }
+        
         .usluga-card-content p {
             font-size: 0.95rem;
             line-height: 1.5;
-        }
-        .btn-detalji { /* CSS za link "Saznaj više" */
-            display: inline-block;
-            margin-top: 15px;
-            font-weight: bold;
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .btn-detalji:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
+            opacity: 0; /* SKRIVENO U POČETNOM STANJU */
+            transition: opacity 0.3s ease 0.1s;
         }
 
+        /* STANJE KAD JE KARTICA AKTIVNA (Hover/Tap) */
+        .usluga-card:hover .usluga-card-content,
+        .usluga-card:focus-within .usluga-card-content,
+        .usluga-card:focus .usluga-card-content { /* Dodan :focus za svaki slučaj */
+            transform: translateY(0); /* 1. Prekrivač se diže */
+            background: rgba(var(--primary-color-rgb), 0.9); /* 2. Pozadina tamni */
+        }
+
+        .usluga-card:hover .usluga-card-content p,
+        .usluga-card:focus-within .usluga-card-content p,
+        .usluga-card:focus .usluga-card-content p {
+            opacity: 1; /* Otkrij tekst */
+        }
         
+
         /* ============================================ */
         /* O NAMA SEKCIJA                               */
         /* ============================================ */
@@ -646,9 +664,8 @@
                 text-align: center;
             }
             
-            /* Usluge idu u 2 stupca na tabletu */
             .usluge-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr 1fr; /* 2 stupca na tabletu */
             }
              .recenzije-grid {
                 grid-template-columns: 1fr;
@@ -744,9 +761,8 @@
                 text-align: center;
             }
             
-            /* Usluge idu u 1 stupac na mobitelu */
             .usluge-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* 1 stupac na mobitelu */
             }
             
             .kontakt-flex {
@@ -865,84 +881,84 @@
             
             <div class="usluge-grid">
                 
-                <div class="usluga-card">
+                <div class="usluga-card" tabindex="0">
                     <div class="usluga-card-image">
                         <img src="/images/Estetska stomatologija.jpg" alt="Estetska stomatologija Crnojević Dental Studio">
                     </div>
                     <div class="usluga-card-content">
                         <h3>Estetska Stomatologija</h3>
                         <p>Fasete, izbjeljivanje i sve za postizanje besprijekornog osmijeha.</p>
-                        </div>
+                    </div>
                 </div>
 
-                <div class="usluga-card">
+                <div class="usluga-card" tabindex="0">
                     <div class="usluga-card-image">
                         <img src="/images/Protetika.png" alt="Zubna protetika Crnojević Dental Studio">
                     </div>
                     <div class="usluga-card-content">
                         <h3>Protetika</h3>
                         <p>Krunice, mostovi i ljuskice za potpunu funkcionalnu i estetsku obnovu.</p>
-                        </div>
+                    </div>
                 </div>
 
-                <div class="usluga-card">
+                <div class="usluga-card" tabindex="0">
                     <div class="usluga-card-image">
                         <img src="/images/Oralna kirurgija.jpeg" alt="Oralna kirurgija Crnojević Dental Studio">
                     </div>
                     <div class="usluga-card-content">
                         <h3>Oralna Kirurgija</h3>
                         <p>Sigurni i bezbolni zahvati, uključujući vađenje umnjaka i implantologiju.</p>
-                        </div>
+                    </div>
                 </div>
                 
-                <div class="usluga-card">
+                <div class="usluga-card" tabindex="0">
                     <div class="usluga-card-image">
                         <img src="/images/Paradontološka terapija.jpg" alt="Parodontologija Crnojević Dental Studio">
                     </div>
                     <div class="usluga-card-content">
                         <h3>Parodontologija</h3>
                         <p>Liječenje bolesti desni i potpornih struktura zuba za dugoročno zdravlje.</p>
-                        </div>
+                    </div>
                 </div>
 
-                <div class="usluga-card">
+                <div class="usluga-card" tabindex="0">
                     <div class="usluga-card-image">
                         <img src="/images/Konzervativna terapija.jpeg" alt="Konzervativna terapija Crnojević Dental Studio">
                     </div>
                     <div class="usluga-card-content">
                         <h3>Konzervativna Terapija</h3>
                         <p>Liječenje karijesa i izrada preciznih, estetskih ispuna (plombi).</p>
-                        </div>
+                    </div>
                 </div>
 
-                <div class="usluga-card">
+                <div class="usluga-card" tabindex="0">
                     <div class="usluga-card-image">
                         <img src="/images/Laserska terapija.jpg" alt="Laserska terapija Crnojević Dental Studio">
                     </div>
                     <div class="usluga-card-content">
                         <h3>Laserska Terapija</h3>
                         <p>Minimalno invazivni zahvati uz pomoć lasera za brži oporavak.</p>
-                        </div>
+                    </div>
                 </div>
                 
-                <div class="usluga-card">
+                <div class="usluga-card" tabindex="0">
                     <div class="usluga-card-image">
                         <img src="/images/Funkcijska dijagnostika.jpg" alt="Funkcijska dijagnostika Crnojević Dental Studio">
                     </div>
                     <div class="usluga-card-content">
                         <h3>Funkcijska Dijagnostika</h3>
                         <p>Analiza zagriza i funkcije čeljusti za rješavanje kompleksnih problema.</p>
-                        </div>
+                    </div>
                 </div>
 
-                <div class="usluga-card">
+                <div class="usluga-card" tabindex="0">
                     <div class="usluga-card-image">
                         <img src="/images/Osmijeh.jpeg" alt="Smile Design (Dizajn osmijeha) Crnojević Dental Studio">
                     </div>
                     <div class="usluga-card-content">
                         <h3>Dizajn Osmijeha</h3>
                         <p>Digitalno planiranje i vizualizacija vašeg novog, savršenog osmijeha.</p>
-                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -1109,7 +1125,7 @@
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.15 // Pokreni animaciju kada 15% sekcije uđe u viewport
+            threshold: 0.15 
         };
 
         const sectionObserver = new IntersectionObserver((entries, observer) => {
@@ -1127,6 +1143,7 @@
     </script>
 </body>
 </html>
+
 
 
 
