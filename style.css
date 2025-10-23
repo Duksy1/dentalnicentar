@@ -147,7 +147,7 @@ section.animate-on-scroll {
 }
 
 .nav-logo-image {
-    height: 45px; 
+    height: 60px; 
     width: auto;  
     display: block;
 }
@@ -792,3 +792,4 @@ footer a:hover {
     }
 
 }
+
