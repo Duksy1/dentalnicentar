@@ -369,7 +369,7 @@ section.animate-on-scroll {
     padding: 20px;
     color: #fff;
     background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
-    transform: translateY(calc(100% - 85px)); /* Otkriva samo naslov */
+    transform: translateY(calc(100% - 105px)); /* Otkriva samo naslov */
     height: 100%;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -790,4 +790,5 @@ footer a:hover {
             transform: translateX(calc(-150px * 9));
         }
     }
+
 }
