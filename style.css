@@ -147,7 +147,7 @@ section.animate-on-scroll {
 }
 
 .nav-logo-image {
-    height: 60px; 
+    height: 45px; 
     width: auto;  
     display: block;
 }
@@ -245,61 +245,6 @@ section.animate-on-scroll {
 .hero-cta .btn {
     margin: 0 15px;
     margin-bottom: 15px;
-}
-
-/* ============================================ */
-/* HERO POZADINSKI VIDEO STILOVI                */
-/* ============================================ */
-.hero {
-    position: relative; /* Potrebno da bi video ostao unutar hero sekcije */
-    overflow: hidden; /* Osigurava da video ne "curi" van */
-    background-color: var(--primary-color); /* Fallback boja dok se poster/video ne učita */
-}
-
-.hero-video-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; /* Ispod sadržaja */
-}
-
-.hero-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Pokriva cijelu površinu, reže višak */
-}
-
-.video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(var(--primary-color-rgb), 0.5); /* Poluprozirni tamni sloj (podesite 0.5) */
-    z-index: 2; /* Iznad videa, ispod teksta */
-}
-
-/* Osiguraj da je tekst IZNAD videa i sloja */
-.hero .hero-content {
-    position: relative;
-    z-index: 3; 
-}
-
-/* Opcionalno: Promijeni boju teksta u bijelu ako je overlay taman */
-.hero .hero-text h1,
-.hero .hero-text .hero-subtitle {
-    color: #fff; /* Ili neka druga svijetla boja */
-}
-/* Možda ćete trebati prilagoditi i boje gumba ako se ne vide dobro */
-.hero .hero-cta .btn-secondary {
-    border-color: #fff;
-    color: #fff;
-}
- .hero .hero-cta .btn-secondary:hover {
-    background-color: #fff;
-    color: var(--primary-color);
 }
 
 /* ============================================
@@ -424,7 +369,8 @@ section.animate-on-scroll {
     padding: 20px;
     color: #fff;
     background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
-    transform: translateY(calc(100% - 105px)); /* Otkriva samo naslov */
+    /* AŽURIRANO: Povećan prostor za naslove u 2 reda */
+    transform: translateY(calc(100% - 105px)); 
     height: 100%;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -440,7 +386,7 @@ section.animate-on-scroll {
 .usluga-card-content p {
     font-size: 0.95rem;
     line-height: 1.5;
-    opacity: 0; /* SKRIVENO U POČETNOM STANJU */
+    opacity: 0; 
     transition: opacity 0.3s ease 0.1s;
 }
 
@@ -460,10 +406,40 @@ section.animate-on-scroll {
 
 
 /* ============================================ */
+/* VIDEO SEKCIJA (NOVO)                         */
+/* ============================================ */
+.video-section {
+    background-color: var(--background-light); 
+    padding-top: 60px; 
+    padding-bottom: 80px;
+}
+
+.video-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    max-width: 900px; 
+    margin: 0 auto; 
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    background-color: #000; 
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+
+/* ============================================ */
 /* O NAMA SEKCIJA                               */
 /* ============================================ */
 .o-nama-section {
-    background-color: var(--background-light);
+    background-color: #fff; /* Vraćeno na bijelo radi kontrasta s video sekcijom */
 }
 .o-nama-flex {
     display: flex;
@@ -507,7 +483,7 @@ section.animate-on-scroll {
 /* RECENZIJE SEKCIJA                            */
 /* ============================================ */
  .recenzije-section {
-    background: #fff;
+    background: var(--background-light); /* Promijenjena pozadina radi kontrasta */
  }
 .recenzije-grid {
     display: grid;
@@ -515,7 +491,7 @@ section.animate-on-scroll {
     gap: 40px;
 }
 .recenzija-card {
-    background: var(--background-light);
+    background: #fff; /* Kartice su sada bijele */
     border: 1px solid var(--border-color);
     padding: 30px;
     border-radius: 10px;
@@ -845,7 +821,7 @@ footer a:hover {
             transform: translateX(calc(-150px * 9));
         }
     }
-
 }
+
 
 
