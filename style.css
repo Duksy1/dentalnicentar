@@ -480,6 +480,66 @@ section.animate-on-scroll {
 }
 
 /* ============================================ */
+/* STATISTIKA SEKCIJA                           */
+/* ============================================ */
+.stats-section {
+    background-color: var(--primary-color); /* Tamna pozadina za kontrast */
+    color: #fff; /* Bijeli tekst */
+    padding: 50px 0; /* Malo manji padding od standardnih sekcija */
+    /* Neka se odmah pojavi, bez fade-in animacije */
+    opacity: 1; 
+    transform: translateY(0);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dva jednaka stupca */
+    gap: 40px;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 20px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 3.5rem; /* Veliki brojevi */
+    font-weight: bold;
+    font-family: var(--font-family-secondary); /* Serif font za eleganciju */
+    line-height: 1.1;
+    margin-bottom: 10px;
+    color: var(--accent-color); /* Naglašena boja za brojeve */
+}
+
+.stat-description {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Prilagodba za mobilne uređaje */
+@media (max-width: 768px) {
+    .stats-section {
+        padding: 40px 0;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr; /* Jedan stupac na mobitelu */
+        gap: 30px;
+    }
+
+    .stat-number {
+        font-size: 3rem;
+    }
+
+    .stat-description {
+        font-size: 1rem;
+    }
+}
+
+/* ============================================ */
 /* RECENZIJE SEKCIJA                            */
 /* ============================================ */
  .recenzije-section {
@@ -822,6 +882,7 @@ footer a:hover {
         }
     }
 }
+
 
 
 
