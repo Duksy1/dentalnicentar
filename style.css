@@ -486,9 +486,6 @@ section.animate-on-scroll {
     background-color: var(--primary-color); /* Tamna pozadina za kontrast */
     color: #fff; /* Bijeli tekst */
     padding: 50px 0; /* Malo manji padding od standardnih sekcija */
-    /* Neka se odmah pojavi, bez fade-in animacije */
-    opacity: 1; 
-    transform: translateY(0);
 }
 
 .stats-grid {
@@ -882,6 +879,7 @@ footer a:hover {
         }
     }
 }
+
 
 
 
