@@ -913,6 +913,76 @@ footer a:hover {
      }
  }
 
+/* ============================================ */
+/* NOVI STILOVI ZA GOOGLE RATING SUMMARY        */
+/* ============================================ */
+.google-rating-summary {
+    display: flex;
+    flex-direction: column; /* Stavi gumb ispod ocjene na manjim ekranima */
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Razmak između ocjene i gumba */
+    padding: 30px;
+    background-color: var(--background-light); /* Svijetla pozadina */
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    max-width: 600px; /* Ograniči širinu */
+    margin: 0 auto 40px auto; /* Centriraj blok i dodaj marginu ispod */
+    text-align: center;
+}
+
+.rating-box {
+    margin-bottom: 15px; /* Razmak ako je gumb ispod */
+}
+
+.rating-score {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-right: 15px;
+    vertical-align: middle;
+}
+
+.rating-stars {
+    display: inline-block;
+    color: #fbbc05; /* Google žuta za zvjezdice */
+    font-size: 1.5rem;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+
+.review-count {
+    display: block; /* Stavi ispod zvjezdica */
+    margin-top: 5px;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+.google-reviews-btn {
+    /* Prilagodbe za gumb */
+    border-radius: 8px; /* Standardni radius */
+    padding: 12px 24px;
+    text-transform: none; /* Bez velikih slova */
+    font-size: 1rem;
+}
+
+/* Prilagodbe za veće ekrane */
+@media (min-width: 576px) { 
+    .google-rating-summary {
+        flex-direction: row; /* Stavi ocjenu i gumb jedno pored drugog */
+        justify-content: space-between; /* Razvuci ih */
+        text-align: left; /* Poravnaj tekst lijevo */
+    }
+    .rating-box {
+        margin-bottom: 0;
+    }
+     .review-count {
+        display: inline-block; /* Vrati pored zvjezdica */
+        margin-top: 0;
+        margin-left: 5px;
+    }
+}
+
 
 
 
