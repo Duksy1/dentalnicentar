@@ -879,6 +879,41 @@ footer a:hover {
     }
 }
 
+/* ============================================ */
+ /* PRILAGODBA USLUGA ZA VELIKE EKRANE (Desktop) */
+ /* ============================================ */
+ @media (min-width: 993px) { /* Primijeni samo na ekranima širim od 992px */
+     
+     .usluge-grid {
+         /* Osnovna mreža od 6 stupaca */
+         grid-template-columns: repeat(6, 1fr); 
+     }
+
+     /* Prve dvije kartice zauzimaju po pola širine (3/6 stupaca) */
+     .usluga-card:nth-child(1),
+     .usluga-card:nth-child(2) {
+         grid-column: span 3; 
+     }
+
+     /* Ostalih 6 kartica zauzimaju po trećinu širine (2/6 stupaca) */
+     .usluga-card:nth-child(n+3) { /* Sve kartice od treće nadalje */
+         grid-column: span 2;
+     }
+
+     /* Opcionalno: Povećaj visinu slike samo za prve dvije veće kartice */
+     .usluga-card:nth-child(1) .usluga-card-image,
+     .usluga-card:nth-child(2) .usluga-card-image {
+         height: 250px; /* Npr. veća visina za veće kartice */
+     }
+     
+     /* Opcionalno: Povećaj font naslova samo za prve dvije veće kartice */
+     .usluga-card:nth-child(1) .usluga-card-content h3,
+     .usluga-card:nth-child(2) .usluga-card-content h3 {
+          font-size: 1.8rem; /* Malo veći naslov */
+     }
+ }
+
+
 
 
 
