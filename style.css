@@ -390,6 +390,27 @@ section.animate-on-scroll {
     transition: opacity 0.3s ease 0.1s;
 }
 
+/* STIL ZA "SAZNAJ VIŠE" GUMB UNUTAR KARTICE */
+.btn-saznaj-vise {
+    display: inline-block; /* Da poštuje margine */
+    margin-top: 15px; /* Razmak od paragrafa */
+    padding: 8px 18px; /* Malo manji padding od glavnih gumba */
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.9); /* Blago prozirna bijela */
+    color: var(--primary-color); /* Tamni tekst */
+    transition: all 0.3s ease;
+    opacity: 0; /* SKRIVEN U POČETNOM STANJU */
+    transform: translateY(10px); /* Krenut će malo niže */
+}
+.btn-saznaj-vise:hover {
+    background-color: #fff; /* Puna bijela na hover */
+    color: var(--accent-color); /* Plavi tekst na hover */
+    transform: translateY(10px) scale(1.05); /* Zadrži poziciju, blagi zoom */
+}
+
 /* STANJE KAD JE KARTICA AKTIVNA (Hover/Tap) */
 .usluga-card:hover .usluga-card-content,
 .usluga-card:focus-within .usluga-card-content,
@@ -403,6 +424,15 @@ section.animate-on-scroll {
 .usluga-card:focus .usluga-card-content p {
     opacity: 1; 
 }
+
+/* DODAJTE OVO: Otkrij gumb na hover/focus */
+ .usluga-card:hover .btn-saznaj-vise,
+ .usluga-card:focus-within .btn-saznaj-vise,
+ .usluga-card:focus .btn-saznaj-vise {
+     opacity: 1; /* Pokaži gumb */
+     transform: translateY(0); /* Vrati ga na originalnu poziciju */
+     transition-delay: 0.2s; /* Mala odgoda da se pojavi nakon teksta */
+ }
 
 
 /* ============================================ */
@@ -1111,6 +1141,7 @@ footer a:hover {
         font-size: 1rem;
     }
 }
+
 
 
 
